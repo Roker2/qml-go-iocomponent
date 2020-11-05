@@ -22,18 +22,39 @@ import (
 	"os"
 )
 
+type folderType int
+
+const (
+	Config folderType = 0
+	Cache folderType = 1
+	AppData folderType = 2
+)
+
 type IOComponent struct {
 	configFolder string
 	cacheFolder string
 	appDataFolder string
 }
 
-func (io *IOComponent) WriteToFile(fileName string, text string) {
-	err := os.Mkdir(io.configFolder, 0777)
+func (io *IOComponent) getFolder(ft folderType) string {
+	switch ft {
+	case Config:
+		return io.configFolder
+	case Cache:
+		return io.cacheFolder
+	case AppData:
+		return io.appDataFolder
+	}
+	return ""
+}
+
+func (io *IOComponent) WriteToFile(ft folderType, fileName string, text string) {
+	folder := io.getFolder(ft)
+	err := os.Mkdir(folder, 0777)
 	if err != nil {
 		log.Println(err)
 	}
-	file, err := os.Create(io.configFolder + fileName)
+	file, err := os.Create(folder + fileName)
 	if err != nil {
 		log.Println(err)
 	}
