@@ -24,6 +24,8 @@ import (
 
 type IOComponent struct {
 	configFolder string
+	cacheFolder string
+	appDataFolder string
 }
 
 func (io *IOComponent) WriteToFile(fileName string, text string) {
@@ -51,6 +53,8 @@ func Register(packageName string) {
 				log.Println(err)
 			}
 			v.configFolder =  home + "/.config/" + packageName + "/"
+			v.cacheFolder =  home + "/.cache/" + packageName + "/"
+			v.appDataFolder =  home + "/.local/share/" + packageName + "/"
 			log.Println("Init IOComponent")
 		},
 	}})
