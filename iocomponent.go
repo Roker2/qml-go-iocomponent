@@ -18,6 +18,7 @@ package iocomponent
 
 import (
 	"github.com/nanu-c/qml-go"
+	"io/ioutil"
 	"log"
 	"os"
 )
@@ -63,6 +64,15 @@ func (io *IOComponent) WriteToFile(ft folderType, fileName string, text string) 
 	if err != nil {
 		log.Println(err)
 	}
+}
+
+func (io *IOComponent) ReadFromFile(ft folderType, fileName string) string {
+	folder := io.getFolder(ft)
+	b, err := ioutil.ReadFile(folder + fileName)
+	if err != nil {
+		log.Println(err)
+	}
+	return string(b)
 }
 
 func Register(packageName string) {
