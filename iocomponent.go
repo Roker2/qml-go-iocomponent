@@ -68,15 +68,14 @@ func (io *IOComponent) WriteToFile(ft folderType, fileName string, text string) 
 func Register(packageName string) {
 	qml.RegisterTypes("GoIOComponent", 0, 1, []qml.TypeSpec{{
 		Init: func(v *IOComponent, obj qml.Object) {
+			log.Println("Init IOComponent")
 			home, err := os.UserHomeDir()
 			if err != nil {
-				log.Println("GoIOComponent error")
-				log.Println(err)
+				log.Println("GoIOComponent error: " + err.Error())
 			}
 			v.configFolder =  home + "/.config/" + packageName + "/"
 			v.cacheFolder =  home + "/.cache/" + packageName + "/"
 			v.appDataFolder =  home + "/.local/share/" + packageName + "/"
-			log.Println("Init IOComponent")
 		},
 	}})
 }
