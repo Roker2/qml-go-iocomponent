@@ -31,7 +31,12 @@ func (io *IOComponent) WriteToFile(fileName string, text string) {
 	if err != nil {
 		log.Println(err)
 	}
-	_, err = os.Create(io.configFolder + fileName)
+	file, err := os.Create(io.configFolder + fileName)
+	if err != nil {
+		log.Println(err)
+	}
+	defer file.Close()
+	_, err = file.WriteString(text)
 	if err != nil {
 		log.Println(err)
 	}
