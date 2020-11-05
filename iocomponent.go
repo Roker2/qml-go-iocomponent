@@ -40,7 +40,12 @@ func (io *IOComponent) WriteToFile(fileName string, text string) {
 func Register(packageName string) {
 	qml.RegisterTypes("GoIOComponent", 0, 1, []qml.TypeSpec{{
 		Init: func(v *IOComponent, obj qml.Object) {
-			v.configFolder = "~/.config/" + packageName + "/"
+			home, err := os.UserHomeDir()
+			if err != nil {
+				log.Println("GoIOComponent error")
+				log.Println(err)
+			}
+			v.configFolder =  home + "/.config/" + packageName + "/"
 			log.Println("Init IOComponent")
 		},
 	}})
