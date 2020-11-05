@@ -68,8 +68,7 @@ func (io *IOComponent) WriteToFile(ft folderType, fileName string, text string) 
 
 func (io *IOComponent) ReadFromFile(ft folderType, fileName string) string {
 	folder := io.getFolder(ft)
-	_, err := os.Stat(folder + fileName)
-	if err != nil {
+	if !io.FileIsExist(ft, fileName) {
 		log.Println("File does not exist")
 		return ""
 	}
@@ -78,6 +77,15 @@ func (io *IOComponent) ReadFromFile(ft folderType, fileName string) string {
 		log.Println(err)
 	}
 	return string(b)
+}
+
+func (io *IOComponent) FileIsExist(ft folderType, fileName string) bool {
+	folder := io.getFolder(ft)
+	_, err := os.Stat(folder + fileName)
+	if err != nil {
+		return false
+	}
+	return true
 }
 
 func Register(packageName string) {
