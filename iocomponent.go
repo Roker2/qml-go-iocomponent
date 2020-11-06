@@ -88,6 +88,13 @@ func (io *IOComponent) FileIsExist(ft folderType, fileName string) bool {
 	return true
 }
 
+func (io *IOComponent) RemoveFile(ft folderType, fileName string) {
+	err := os.Remove(io.getFolder(ft) + fileName)
+	if err != nil {
+		log.Println(err)
+	}
+}
+
 func Register(packageName string) {
 	qml.RegisterTypes("GoIOComponent", 0, 1, []qml.TypeSpec{{
 		Init: func(v *IOComponent, obj qml.Object) {
