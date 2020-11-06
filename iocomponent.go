@@ -88,6 +88,22 @@ func (io *IOComponent) FileIsExist(ft folderType, fileName string) bool {
 	return true
 }
 
+func (io *IOComponent) CreateFile(ft folderType, fileName string) {
+	folder := io.getFolder(ft)
+	err := os.Mkdir(folder, 0777)
+	if err != nil {
+		log.Println(err)
+	}
+	file, err := os.Create(folder + fileName)
+	if err != nil {
+		log.Println(err)
+	}
+	err = file.Close()
+	if err != nil {
+		log.Println(err)
+	}
+}
+
 func (io *IOComponent) RemoveFile(ft folderType, fileName string) {
 	err := os.Remove(io.getFolder(ft) + fileName)
 	if err != nil {
