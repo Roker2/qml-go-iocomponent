@@ -14,19 +14,19 @@ You should to register package as QML component.
 
 > ```go
 > func run() error {
->        iocomponent.Register("fullappname")
->        ui.SetEngine()
->    
+>     iocomponent.Register("fullappname")
+>     ui.SetEngine()
+>
 >     ui.InitModels()
->        err := ui.SetComponent()
->        if err != nil {
->           return err
->        }
->        ui.Win.Show()
->        ui.Win.Wait()
->    
+>     err := ui.SetComponent()
+>     if err != nil {
+>         return err
+>     }
+>     ui.Win.Show()
+>     ui.Win.Wait()
+>
 >     return nil
->    }
+> }
 > ```
 
 "fullappname" is name of your program, for example "by.roker2.mega".
