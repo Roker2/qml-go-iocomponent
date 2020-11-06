@@ -35,11 +35,11 @@ You should to register package as QML component.
 
 UBports provide 3 writable folders for save and read your program data:
 
-- /home/phablet/.config/<fullappname>/
+- /home/phablet/.config/fullappname/
 
-- /home/phablet/.cache/<fullappname>/
+- /home/phablet/.cache/fullappname/
 
-- /home/phablet/.local/share/<fullappname>/
+- /home/phablet/.local/share/fullappname/
 
 This package use "folderType" for choosing folder. "folderType" is int
 
