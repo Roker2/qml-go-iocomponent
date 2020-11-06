@@ -14,7 +14,7 @@ You should to register package as QML component.
 
 > ```go
 > func run() error {
->        iocomponent.Register("<fullappname>")
+>        iocomponent.Register("fullappname")
 >        ui.SetEngine()
 >    
 >     ui.InitModels()
@@ -29,7 +29,7 @@ You should to register package as QML component.
 >    }
 > ```
 
-"<fullappname>" is name of your program, for example "by.roker2.mega".
+"fullappname" is name of your program, for example "by.roker2.mega".
 
 ### 3 writable folders
 
