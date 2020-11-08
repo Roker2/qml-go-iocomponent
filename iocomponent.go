@@ -90,7 +90,7 @@ func (io *IOComponent) FileIsExist(ft folderType, fileName string) bool {
 
 func (io *IOComponent) CreateFile(ft folderType, fileName string) {
 	folder := io.getFolder(ft)
-	err := os.Mkdir(folder, 0777)
+	err := os.Mkdir(folder, 0644)
 	if err != nil {
 		log.Println(err)
 	}
