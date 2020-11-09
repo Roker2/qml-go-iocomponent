@@ -49,21 +49,24 @@ func (io *IOComponent) getFolder(ft folderType) string {
 	return ""
 }
 
-func (io *IOComponent) WriteToFile(ft folderType, fileName string, text string) {
+func (io *IOComponent) WriteToFile(ft folderType, fileName string, text string) error {
 	folder := io.getFolder(ft)
 	err := os.Mkdir(folder, 0644)
 	if err != nil {
 		log.Println(err)
+		return err
 	}
 	file, err := os.Create(folder + fileName)
 	if err != nil {
 		log.Println(err)
+		return err
 	}
 	defer file.Close()
 	_, err = file.WriteString(text)
 	if err != nil {
 		log.Println(err)
 	}
+	return err
 }
 
 func (io *IOComponent) ReadFromFile(ft folderType, fileName string) string {
