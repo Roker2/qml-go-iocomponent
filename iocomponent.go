@@ -52,7 +52,7 @@ func (io *IOComponent) getFolder(ft folderType) string {
 func (io *IOComponent) WriteToFile(ft folderType, fileName string, text string) error {
 	folder := io.getFolder(ft)
 	if !io.IsExist(ft, "") {
-		err := os.Mkdir(folder, os.ModeDir)
+		err := io.Mkdir(ft, "")
 		if err != nil {
 			log.Println(err)
 			return err
@@ -96,7 +96,7 @@ func (io *IOComponent) IsExist(ft folderType, fileName string) bool {
 func (io *IOComponent) CreateFile(ft folderType, fileName string) {
 	folder := io.getFolder(ft)
 	if !io.IsExist(ft, "") {
-		err := os.Mkdir(folder, os.ModeDir)
+		err := io.Mkdir(ft, "")
 		if err != nil {
 			log.Println(err)
 		}
@@ -109,6 +109,14 @@ func (io *IOComponent) CreateFile(ft folderType, fileName string) {
 	if err != nil {
 		log.Println(err)
 	}
+}
+
+func (io *IOComponent) Mkdir(ft folderType, folder string) error {
+	err := os.Mkdir(folder, os.ModeDir)
+	if err != nil {
+		log.Println(err)
+	}
+	return err
 }
 
 func (io *IOComponent) RemoveFile(ft folderType, fileName string) {
