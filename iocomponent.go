@@ -51,7 +51,7 @@ func (io *IOComponent) getFolder(ft folderType) string {
 
 func (io *IOComponent) WriteToFile(ft folderType, fileName string, text string) error {
 	folder := io.getFolder(ft)
-	err := os.Mkdir(folder, 0644)
+	err := os.Mkdir(folder, os.ModeDir)
 	if err != nil {
 		log.Println(err)
 		return err
