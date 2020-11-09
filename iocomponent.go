@@ -127,7 +127,7 @@ func (io *IOComponent) RemoveFile(ft folderType, fileName string) {
 }
 
 func Register(packageName string) {
-	qml.RegisterTypes("GoIOComponent", 0, 1, []qml.TypeSpec{{
+	qml.RegisterTypes("GoIOComponent", 0, 2, []qml.TypeSpec{{
 		Init: func(v *IOComponent, obj qml.Object) {
 			log.Println("Init IOComponent")
 			home, err := os.UserHomeDir()
