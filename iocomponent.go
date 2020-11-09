@@ -72,7 +72,7 @@ func (io *IOComponent) WriteToFile(ft folderType, fileName string, text string) 
 func (io *IOComponent) ReadFromFile(ft folderType, fileName string) string {
 	folder := io.getFolder(ft)
 	if !io.FileIsExist(ft, fileName) {
-		log.Println("File does not exist")
+		log.Println("File" + fileName + "does not exist")
 		return ""
 	}
 	b, err := ioutil.ReadFile(folder + fileName)
