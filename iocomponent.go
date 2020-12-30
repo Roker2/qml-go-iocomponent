@@ -140,3 +140,13 @@ func Register(packageName string) {
 		},
 	}})
 }
+
+func (io *IOComponent) SetPackageName(packageName string) {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		log.Println("GoIOComponent error: " + err.Error())
+	}
+	io.configFolder =  home + "/.config/" + packageName + "/"
+	io.cacheFolder =  home + "/.cache/" + packageName + "/"
+	io.appDataFolder =  home + "/.local/share/" + packageName + "/"
+}
